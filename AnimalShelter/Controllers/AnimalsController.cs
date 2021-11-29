@@ -8,7 +8,7 @@ using System.Linq;
 namespace AnimalShelter.Controllers
 {
   [Route("api/[controller]")]
-  [apiController]
+  [ApiController]
   public class AnimalsController : ControllerBase
   {
     private readonly AnimalShelterContext _db;
@@ -74,10 +74,10 @@ namespace AnimalShelter.Controllers
     [HttpPost]
     public async Task<ActionResult<Animal>> Post(Animal animal)
     {
-      _db.Players.Add(player);
+      _db.Animals.Add(animal);
       await _db.SaveChangesAsync();
 
-      return CreatedAtAction(nameof(GetPlayer), new { id = player.PlayerId }, player);
+      return CreatedAtAction(nameof(GetAnimal), new { id = animal.AnimalId }, animal);
     }
 
     [HttpGet("{id}")]
@@ -109,7 +109,7 @@ namespace AnimalShelter.Controllers
       }
       catch (DbUpdateConcurrencyException)
       {
-        if (!AniamlExists(id))
+        if (!AnimalExists(id))
         {
           return NotFound();
         }
@@ -124,7 +124,7 @@ namespace AnimalShelter.Controllers
     [HttpDelete("{id{")]
     public async Task<IActionResult> DeleteAnimal(int id)
     {
-      var alayer = await _db.Animals.FindAsync(id);
+      var animal = await _db.Animals.FindAsync(id);
       if (animal == null)
       {
         return NotFound();
