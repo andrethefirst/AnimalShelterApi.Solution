@@ -94,7 +94,7 @@ namespace AnimalShelter.Controllers
     }
 
     [HttpPut("{id}")]
-    public async Task<IActionResult> Putl(int id, Animal animal)
+    public async Task<IActionResult> Put(int id, Animal animal)
     {
       if (id != animal.AnimalId)
       {
@@ -121,7 +121,7 @@ namespace AnimalShelter.Controllers
       return NoContent();
     }
 
-    [HttpDelete("{id{")]
+    [HttpDelete("{id}")]
     public async Task<IActionResult> DeleteAnimal(int id)
     {
       var animal = await _db.Animals.FindAsync(id);
